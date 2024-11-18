@@ -1,5 +1,5 @@
 import { auth, googleAuthProvider } from "../config/firebase.js";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { useState } from "react";
 
 const Auth = () => {
@@ -30,6 +30,16 @@ const Auth = () => {
     }
   };
 
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
   return (
     <>
       <input onChange={handleEmailChange} placeholder="email" />
@@ -40,6 +50,7 @@ const Auth = () => {
       />
       <button onClick={signInWithUserAndPassword}>Sign in</button>
       <button onClick={handleSignInWithGoogle}>Sign in With Goolge</button>
+      <button onClick={handleSignOut}>Sign out</button>
     </>
   );
 };
