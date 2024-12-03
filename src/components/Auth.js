@@ -1,5 +1,9 @@
 import { auth, googleAuthProvider } from "../config/firebase.js";
-import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import { useState } from "react";
 
 const Auth = () => {
@@ -18,7 +22,7 @@ const Auth = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   };
 
@@ -26,7 +30,7 @@ const Auth = () => {
     try {
       await signInWithPopup(auth, googleAuthProvider);
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   };
 
@@ -34,11 +38,9 @@ const Auth = () => {
     try {
       await signOut(auth);
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   };
-
-
 
   return (
     <>
