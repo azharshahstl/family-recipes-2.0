@@ -7,17 +7,20 @@ import { collection, getDocs } from "firebase/firestore";
 function App() {
   const [recipes, setRecipes] = useState([]);
 
-  const recipesCollectionRef = useMemo(() => {
-    collection(db, "recipes");
-  }, []);
+  const recipesCollectionRef = collection(db, "recipes");
 
   useEffect(() => {
     const getRecipes = async () => {
       try {
         const recipeData = await getDocs(recipesCollectionRef);
-        console.log(recipeData);
+        const filteredData = recipeData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        console.log("recipe data", filteredData);
       } catch (err) {
-        // console.log(err);
+        console.log(err);
       }
     };
 
