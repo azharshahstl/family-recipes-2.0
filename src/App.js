@@ -49,10 +49,14 @@ function App() {
         {recipes.map((recipe) => {
           return (
             <div key={recipe.id}>
-              <h1>Title: {recipe.title}</h1>
-              <h3>Ingredients: {recipe.ingredients}</h3>
-              <h3>Difficulty Rating: {recipe.difficultyRating}</h3>
-              <h3>Directions: {recipe.directions}</h3>
+              <h1>Title: </h1>
+              <h2>{recipe.title}</h2>
+              <h3>Ingredients:</h3>
+              <p>{recipe.ingredients}</p>
+              <h3>Difficulty Rating:</h3>
+              <p>{recipe.difficultyRating}</p>
+              <h3>Directions:</h3>
+              <p>{recipe.directions}</p>
             </div>
           );
         })}
