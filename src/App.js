@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
-import Auth from "./components/Auth";
+import Auth from "./components/auth/Auth";
 import { db } from "./config/firebase";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
 
-  const [title, setTitle] = useState("");
-  const [ingredients, setIngredients] = useState([]);
+  const titleRef = useRef(null);
   const [difficultyRating, setDifficultyRating] = useState(1);
+
+  const [ingredients, setIngredients] = useState([]);
   const [directions, setDirections] = useState("");
 
   const recipesCollectionRef = collection(db, "recipes");
@@ -42,17 +43,21 @@ function App() {
 
       <div>
         <label htmlFor="title">Title</label>
-        <input placeholder="title" id="title" />
-        <label placeholder="difficulty selector" htmlFor="difficulty">
-          Choose the difficulty level:
-        </label>
-        <select name="ratings" id="difficulty selector">
-          <option value="">-- Please choose a difficulty rating --</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="3">4</option>
-        </select>
+        <input
+          type="radio"
+          placeholder="title"
+          id="title"
+          ref={titleRef.current.value}
+        />
+
+        <input type="radio" name="ratings" id="level-1" value="1" />
+        <label htmlFor="level-1">1</label>
+        <input type="radio" name="ratings" id="level-1" value="2" />
+        <label htmlFor="level-2">2</label>
+        <input type="radio" name="ratings" id="level-1" value="3" />
+        <label htmlFor="level-3">3</label>
+        <input type="radio" name="ratings" id="level-1" value="4" />
+        <label htmlFor="level-4">4</label>
       </div>
       <div>
         {recipes.map((recipe) => {
