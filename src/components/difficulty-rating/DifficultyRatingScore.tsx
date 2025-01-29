@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Legend from "../legend/Legend";
-import DifficultyRatingRadioGroup from "./DifficultyRatingRadioGroup";
+import Legend from "../legend/Legend.tsx";
+import DifficultyRatingRadioGroup from "./DifficultyRatingRadioGroup.tsx";
 
 const DifficultyRatingScore = () => {
   const [selectedOption, setSelectedOption] = useState(undefined);
@@ -10,13 +10,13 @@ const DifficultyRatingScore = () => {
   };
 
   return (
-    <fieldset>
+    <>
       <Legend title="Choose the difficulty level" />
       <DifficultyRatingRadioGroup
         selectedOption={selectedOption}
         handleOptionChange={handleOptionChange}
       />
-    </fieldset>
+    </>
   );
 };
 
