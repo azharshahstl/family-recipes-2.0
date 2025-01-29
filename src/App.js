@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
+import DifficultyRatingScore from "./components/difficulty-rating/DifficultyRatingScore.tsx";
 import "./App.css";
-import Auth from "./components/auth/Auth";
+import Auth from "./components/auth/Auth.tsx";
 import { db } from "./config/firebase";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 
@@ -8,7 +9,6 @@ function App() {
   const [recipes, setRecipes] = useState([]);
 
   const titleRef = useRef(null);
-  const [difficultyRating, setDifficultyRating] = useState(1);
 
   const [ingredients, setIngredients] = useState([]);
   const [directions, setDirections] = useState("");
@@ -44,20 +44,13 @@ function App() {
       <div>
         <label htmlFor="title">Title</label>
         <input
-          type="radio"
+          type="text"
           placeholder="title"
           id="title"
-          ref={titleRef.current.value}
+          ref={titleRef.current?.value}
         />
 
-        <input type="radio" name="ratings" id="level-1" value="1" />
-        <label htmlFor="level-1">1</label>
-        <input type="radio" name="ratings" id="level-1" value="2" />
-        <label htmlFor="level-2">2</label>
-        <input type="radio" name="ratings" id="level-1" value="3" />
-        <label htmlFor="level-3">3</label>
-        <input type="radio" name="ratings" id="level-1" value="4" />
-        <label htmlFor="level-4">4</label>
+        <DifficultyRatingScore />
       </div>
       <div>
         {recipes.map((recipe) => {
