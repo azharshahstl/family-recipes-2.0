@@ -1,11 +1,16 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Auth from "./components/Auth";
 import { db } from "./config/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
+
+  const [title, setTitle] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+  const [difficultyRating, setDifficultyRating] = useState(1);
+  const [directions, setDirections] = useState("");
 
   const recipesCollectionRef = collection(db, "recipes");
 
@@ -26,6 +31,10 @@ function App() {
 
     getRecipes();
   }, []);
+
+  const onSubmitRecipe = async () => {
+    await addDoc(recipesCollectionRef);
+  };
 
   return (
     <div className="App">
