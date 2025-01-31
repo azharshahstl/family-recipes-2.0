@@ -1,4 +1,6 @@
 import React from "react";
+import Label from "../label/Label.tsx";
+import RadioInput from "../input/Input.tsx";
 
 const DifficultyRatingRadioGroup = ({ selectedOption, handleOptionChange }) => {
   return (
@@ -11,7 +13,7 @@ const DifficultyRatingRadioGroup = ({ selectedOption, handleOptionChange }) => {
         id="level-1"
         value="easy"
       />
-      <label htmlFor="level-1">Easy</label>
+      <Label htmlFor="level-1" name="Easy" />
       <input
         type="radio"
         checked={selectedOption === "moderate"}
@@ -20,7 +22,7 @@ const DifficultyRatingRadioGroup = ({ selectedOption, handleOptionChange }) => {
         id="level-1"
         value="moderate"
       />
-      <label htmlFor="level-2">Moderate</label>
+      <Label htmlFor="level-2" name="Moderate" />
       <input
         type="radio"
         checked={selectedOption === "difficult"}
@@ -29,7 +31,7 @@ const DifficultyRatingRadioGroup = ({ selectedOption, handleOptionChange }) => {
         id="level-1"
         value="difficult"
       />
-      <label htmlFor="level-3">Difficult</label>
+      <Label htmlFor="level-3" name="Difficult" />
       <input
         type="radio"
         checked={selectedOption === "master-chef"}
@@ -38,7 +40,7 @@ const DifficultyRatingRadioGroup = ({ selectedOption, handleOptionChange }) => {
         id="level-1"
         value="master-chef"
       />
-      <label htmlFor="level-4">Master Chef</label>
+      <Label htmlFor="level-4" name="Master Chef" />
     </div>
   );
 };
