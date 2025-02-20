@@ -12,6 +12,8 @@ function App() {
 
   const [ingredients, setIngredients] = useState([]);
   const [directions, setDirections] = useState("");
+  const [selectedDifficultyRating, setSelectedDifficultyRating] =
+    useState(undefined);
 
   const recipesCollectionRef = collection(db, "recipes");
 
@@ -34,7 +36,10 @@ function App() {
   }, []);
 
   const onSubmitRecipe = async () => {
-    await addDoc(recipesCollectionRef);
+    await addDoc(recipesCollectionRef, {
+      title: titleRef.current?.value,
+      difficultyRating: selectedDifficultyRating,
+    });
   };
 
   return (
@@ -50,7 +55,10 @@ function App() {
           ref={titleRef.current?.value}
         />
 
-        <DifficultyRatingScore />
+        <DifficultyRatingScore
+          rating={selectedDifficultyRating}
+          setRating={setSelectedDifficultyRating}
+        />
       </div>
       <div>
         {recipes.map((recipe) => {
